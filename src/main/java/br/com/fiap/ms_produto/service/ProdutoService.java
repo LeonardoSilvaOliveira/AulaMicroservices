@@ -32,5 +32,19 @@ public class ProdutoService {
         );
         return new ProdutoDto(produto);
     }
+    @Transactional
+    public ProdutoDto saveProduto(ProdutoDto produtoDto){
 
+        Produto produto = new Produto();
+
+        copyDtoProduto(produtoDto, produto);
+        produto =produtoRepository.save(produto);
+        return new ProdutoDto(produto);
+    }
+
+    private void copyDtoProduto(ProdutoDto produtoDto, Produto produto){
+        produto.setNome(produtoDto.getNome());
+        produto.setDescricao(produtoDto.getDescricao());
+        produto.setValor(produtoDto.getValor());
+    }
 }
