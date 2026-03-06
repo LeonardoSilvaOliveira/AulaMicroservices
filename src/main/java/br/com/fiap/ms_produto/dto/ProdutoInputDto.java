@@ -1,12 +1,15 @@
 package br.com.fiap.ms_produto.dto;
 
+//Este é o objeto que o usuário envia para a sua API.
 public class ProdutoInputDto {
-    private Long id;
     private String nome;
     private String descricao;
-    private Double valor;
+    private double valor;
 
-    public ProdutoInputDto(String nome, String descricao, Double valor) {
+
+    public ProdutoInputDto(){
+    }
+    public ProdutoInputDto(String nome, String descricao, double valor) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
@@ -20,7 +23,7 @@ public class ProdutoInputDto {
         return descricao;
     }
 
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 }

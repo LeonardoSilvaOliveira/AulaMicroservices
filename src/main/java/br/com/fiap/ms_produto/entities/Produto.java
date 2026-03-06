@@ -1,8 +1,8 @@
 package br.com.fiap.ms_produto.entities;
 
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,17 +10,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Setter
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_produto")
-
+@Table(name ="tb_produto")
 public class Produto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String descricao;
     private Double valor;
-
 
 }

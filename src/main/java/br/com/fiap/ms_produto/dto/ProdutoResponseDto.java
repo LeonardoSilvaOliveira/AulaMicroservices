@@ -4,7 +4,9 @@ import br.com.fiap.ms_produto.entities.Produto;
 
 import java.util.List;
 
+//Este é o objeto que a sua API devolve para o usuário após uma consulta ou cadastro. Controla o que o usuario vê.
 public class ProdutoResponseDto {
+
     private Long id;
     private String nome;
     private String descricao;
@@ -16,15 +18,16 @@ public class ProdutoResponseDto {
         this.descricao = descricao;
         this.valor = valor;
     }
+    //static factoy method para criar instâncias mokadas
+    //somente para testes
+    public static List<ProdutoResponseDto> createMock(){
+        return List.of(new ProdutoResponseDto(1L, "Notebook", "Notebook Dell Inspiron 15", 3500.00),
+        new ProdutoResponseDto(2L, "Smartphone", "Smartphone Samsung Galaxy S", 2500.00),
+        new ProdutoResponseDto(3L, "Tablet", "Tablet Apple iPad", 3000.00),
+        new ProdutoResponseDto(4L, "Monitor", "Monitor LG 27 polegadas", 1200.00)
 
-    public static List<ProdutoResponseDto> creaMock(){
-        return List.of(
-                new ProdutoResponseDto(1L, "Smart TV", "Smart TV LG 20 polegadas", 22.0),
-                new ProdutoResponseDto(2L, "Mouse Microsoft", "Mouse sem fio", 250.0),
-                new ProdutoResponseDto(3L, "teclado Microsoft", "teclado sem fio", 278.95)
         );
     }
-
     public Long getId() {
         return id;
     }

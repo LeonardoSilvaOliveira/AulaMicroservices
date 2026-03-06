@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-
-public class FieldMessageDTO {
-
-    private String fieldName;
-    private String message;
-
+public class CustomErrorDto {
+    private Instant timestamp;
+    private Integer status;
+    private String error;
+    private String path;
 }
