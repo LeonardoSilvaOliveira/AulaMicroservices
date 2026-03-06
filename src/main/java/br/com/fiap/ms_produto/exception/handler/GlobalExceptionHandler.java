@@ -1,10 +1,10 @@
 package br.com.fiap.ms_produto.exception.handler;
 
+import br.com.fiap.ms_produto.exception.DatabaseException;
 import br.com.fiap.ms_produto.exception.ResourceNotFoundException;
 import br.com.fiap.ms_produto.exception.dto.CustomErrorDto;
 import br.com.fiap.ms_produto.exception.dto.ValidationErrorDto;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -55,10 +55,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<CustomErrorDto> handleGenericException(Exception e, HttpServletRequest request){
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        CustomErrorDto err = new CustomErrorDto(Instant.now(), status.value(), "Erro interno INESPERADO.", request.getRequestURI());
+    //@ExceptionHandler(Exception.class)
+    //public ResponseEntity<CustomErrorDto> handleGenericException(Exception e, HttpServletRequest request){
+    //    HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+    //    CustomErrorDto err = new CustomErrorDto(Instant.now(), status.value(), "Erro interno INESPERADO.", request.getRequestURI());
+    //    return ResponseEntity.status(status).body(err);
+    //}
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<CustomErrorDto> handleDatabase(DatabaseException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.CONFLICT;
+        CustomErrorDto err = new CustomErrorDto(Instant.now(), status.value(),
+                e.getMessage(),request.getRequestURI());
+
         return ResponseEntity.status(status).body(err);
     }
 }
